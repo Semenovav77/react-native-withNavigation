@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 import {Text, SectionList} from 'react-native';
 import styled from 'styled-components/native';
 import {MaterialIcons} from '@expo/vector-icons';
@@ -140,11 +140,25 @@ const DATA = [
 ;
 
 export default function App() {
-    const scrll = useRef(null);
+    const [scrollY, setScrollY] = useState(0)
+    const [btnVisible, setbtnVisible] = useState(true)
+    const handleScroll = (event) => {
+        console.log(event.nativeEvent.contentOffset.y + event.nativeEvent.layoutMeasurement.height);
+        console.log(event.nativeEvent.contentSize.height);
+        if (event.nativeEvent.contentOffset.y > scrollY && event.nativeEvent.contentOffset.y > 0) {
+            setbtnVisible(false);
+        } else {
+            if (event.nativeEvent.contentOffset.y + event.nativeEvent.layoutMeasurement.height < event.nativeEvent.contentSize.height) setbtnVisible(true);
+        }
+        if (event.nativeEvent.contentOffset.y === 0) setbtnVisible(true);
+        setScrollY(event.nativeEvent.contentOffset.y);
+    };
     return (
         <Container>
             <Item>
                 <SectionList
+                    onScroll={handleScroll}
+                    scrollEventThrottle={16}
                     sections={DATA}
                     keyExtractor={(item, index) => index}
                     renderItem={({item}) => <Tasks {...item}/>}
@@ -154,9 +168,9 @@ export default function App() {
                         </ItemTitle>
                     )}
                 />
-                <AddButton activeOpacity={0.5}>
+                {btnVisible && <AddButton activeOpacity={0.5}>
                     <MaterialIcons name="add" size={34} color="white" />
-                </AddButton>
+                </AddButton>}
             </Item>
         </Container>
 
