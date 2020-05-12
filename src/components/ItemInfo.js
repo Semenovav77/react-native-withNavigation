@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components/native";
 
-const Tasks = ({user, task, time}) => {
+const Tasks = ({user, task, time, navigation}) => {
     return (
-        <ItemInfo>
+        <ItemInfo onPress={() => navigation.navigate('Person', {user})}>
             <Avatar
                 source={{
                     uri: user.avatar,

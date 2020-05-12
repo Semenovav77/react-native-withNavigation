@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {Text, SectionList} from 'react-native';
-import styled from 'styled-components/native';
-import {MaterialIcons} from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {Tasks} from "./src/components";
+import {HomeScreen, PersonScreen} from "./src/screens";
 
 const DATA = [
         {
@@ -12,6 +11,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -20,6 +20,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -28,6 +29,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -36,6 +38,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -44,6 +47,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -52,6 +56,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -60,6 +65,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -68,6 +74,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -76,6 +83,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -89,6 +97,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -97,6 +106,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -105,6 +115,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -113,6 +124,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -121,6 +133,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -129,6 +142,7 @@ const DATA = [
                 {
                     user: {
                         fullname: 'Вася Пупкин',
+                        phone: '8 (999) 000-11-22',
                         avatar: 'https://sun9-58.userapi.com/c846218/v846218416/efa93/PufoAu6mPwU.jpg?ava=1',
                     },
                     task: 'Заключить договор1',
@@ -139,70 +153,27 @@ const DATA = [
     ]
 ;
 
-export default function App() {
-    const [scrollY, setScrollY] = useState(0)
-    const [btnVisible, setbtnVisible] = useState(true)
-    const handleScroll = (event) => {
-        console.log(event.nativeEvent.contentOffset.y + event.nativeEvent.layoutMeasurement.height);
-        console.log(event.nativeEvent.contentSize.height);
-        if (event.nativeEvent.contentOffset.y > scrollY && event.nativeEvent.contentOffset.y > 0) {
-            setbtnVisible(false);
-        } else {
-            if (event.nativeEvent.contentOffset.y + event.nativeEvent.layoutMeasurement.height < event.nativeEvent.contentSize.height) setbtnVisible(true);
-        }
-        if (event.nativeEvent.contentOffset.y === 0) setbtnVisible(true);
-        setScrollY(event.nativeEvent.contentOffset.y);
-    };
-    return (
-        <Container>
-            <Item>
-                <SectionList
-                    onScroll={handleScroll}
-                    scrollEventThrottle={16}
-                    sections={DATA}
-                    keyExtractor={(item, index) => index}
-                    renderItem={({item}) => <Tasks {...item}/>}
-                    renderSectionHeader={({section: {title}}) => (
-                        <ItemTitle>
-                            <Text>{title}</Text>
-                        </ItemTitle>
-                    )}
-                />
-                {btnVisible && <AddButton activeOpacity={0.5}>
-                    <MaterialIcons name="add" size={34} color="white" />
-                </AddButton>}
-            </Item>
-        </Container>
+const Stack = createStackNavigator();
 
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home" screenOptions={{
+                headerStyle: {
+                    backgroundColor: 'white',
+                },
+                headerTintColor: '#168ad1',
+                headerTitleStyle: {
+                    fontWeight: '500',
+                    fontSize: 22
+                },
+            }}>
+                <Stack.Screen name="Home" options={{ title: 'Список встреч'}}>
+                    {props => <HomeScreen {...props} DATA={DATA} />}
+                </Stack.Screen>
+                <Stack.Screen name="Person" options={{ title: 'Карточка'}} component={PersonScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
-
-const Container = styled.View`
-    flex:1;
-    `;
-
-
-const Item = styled.View`
-    margin-top: 50px;
-`;
-
-const ItemTitle = styled.Text`
-    margin-bottom: 15px;
-    font-size: 25px;
-    background-color: white;
-    font-weight: 700;
-    padding: 0 20px;
-`;
-
-const AddButton = styled.TouchableOpacity`
-    position:absolute;
-    right: 30px;
-    bottom: 30px;
-    background-color: #28c75d;
-    width: 60px;
-    height: 60px;
-    border-radius: 50px
-    justify-content: center;
-    align-items: center
-`;
 
