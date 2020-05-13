@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Button} from './../components';
+import {ContextApp} from "./../reducer/reducer";
 
 const PersonScreen = ({route, navigation}) => {
+    const {state, dispatch} = useContext(ContextApp);
     const { user } = route.params;
     return (
         <Container>
