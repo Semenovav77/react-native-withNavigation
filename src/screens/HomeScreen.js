@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
-import {Text, SectionList} from 'react-native';
+import {Text, SectionList, View} from 'react-native';
 import styled from 'styled-components/native';
 import {MaterialIcons} from '@expo/vector-icons';
+import {
+    Placeholder,
+    PlaceholderMedia,
+    PlaceholderLine,
+    Fade,
+    Loader,
+    Shine,
+    ShineOverlay,
+} from 'rn-placeholder';
 
 import {Tasks} from "./../components";
 
-
-const HomeScreen = ({DATA, navigation}) => {
+const HomeScreen = ({DATA, navigation, isLoading}) => {
     const [scrollY, setScrollY] = useState(0);
     const [btnVisible, setbtnVisible] = useState(true);
     const handleScroll = (event) => {
@@ -20,9 +28,35 @@ const HomeScreen = ({DATA, navigation}) => {
         if (event.nativeEvent.contentOffset.y === 0) setbtnVisible(true);
         setScrollY(event.nativeEvent.contentOffset.y);
     };
+    const arrPlaceholder = Array(10).fill(1);
+    if (isLoading) {
+        return (
+            <PlaceholderColor>
+                {arrPlaceholder.map((item, index) => {
+                    return (
+                            <ItemPlaceholder key={index}
+                                Left={props => (
+                                    <PlaceholderMedia
+                                        isRound={true}
+                                        style={[{marginRight: 10}, props.style]}
+                                    />
+                                )}
+                                Animation={ShineOverlay}
+                            >
+                                <PlaceholderLine width={50}/>
+                                <PlaceholderLine width={75}/>
+                            </ItemPlaceholder>
+                    )
+                })}
+
+            </PlaceholderColor>
+        )
+    }
+    ;
     return (
         <Container>
             <Item>
+
                 <SectionList
                     onScroll={handleScroll}
                     scrollEventThrottle={16}
@@ -39,9 +73,9 @@ const HomeScreen = ({DATA, navigation}) => {
                     <MaterialIcons name="add" size={34} color="white"/>
 
                 </AddButton>}
+
             </Item>
         </Container>
-
     );
 };
 
@@ -77,3 +111,12 @@ const AddButton = styled.TouchableOpacity`
     align-items: center
 `;
 
+const PlaceholderColor = styled.View`
+    flex:1;
+    background: white;
+    padding: 25px 25px
+`;
+
+const ItemPlaceholder = styled(Placeholder)`
+    margin-bottom:15px
+`;
